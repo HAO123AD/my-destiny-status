@@ -341,9 +341,7 @@ const DestinyTabContent: FC<WithMvuDataProps> = ({ data }) => {
                       _.map(partner.身体情况, (desc, partName) => (
                         <div key={partName} className={styles.bodyStateRow}>
                           <span className={styles.bodyStateLabel}>{partName}</span>
-                          <span className={styles.bodyStateValue}>
-                            {desc || '—'}
-                          </span>
+                          <span className={styles.bodyStateValue}>{desc || '—'}</span>
                         </div>
                       ))
                     ) : (
