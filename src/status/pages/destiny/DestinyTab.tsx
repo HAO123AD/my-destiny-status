@@ -252,8 +252,24 @@ const DestinyTabContent: FC<WithMvuDataProps> = ({ data }) => {
                 </div>
               )}
 
-              {/* 基础信息 */}
+              {/* 基础信息（性别始终显示以便区分男女） */}
               <div className={styles.partnerInfo}>
+                {(partner.性别 !== undefined && partner.性别 !== '') || editEnabled ? (
+                  renderEditableRow(
+                    '性别',
+                    `命定系统.关系列表.${name}.性别`,
+                    partner.性别,
+                    'text',
+                    styles.infoRow,
+                    styles.infoLabel,
+                    styles.infoValue,
+                  )
+                ) : (
+                  <div className={styles.infoRow}>
+                    <span className={styles.infoLabel}>性别</span>
+                    <span className={styles.infoValue}>未设定</span>
+                  </div>
+                )}
                 {renderEditableRow(
                   '种族',
                   `命定系统.关系列表.${name}.种族`,
@@ -297,9 +313,9 @@ const DestinyTabContent: FC<WithMvuDataProps> = ({ data }) => {
                 )}
               </div>
 
-              {/* 外貌与着装：始终显示区块，避免整块消失；外貌下增加可折叠「隐藏条目」 */}
+              {/* 外貌与着装：外貌=简要表面描述；身体状态=各部位细节单独列出 */}
               <div className={styles.partnerAppearance}>
-                {/* 外貌：无内容且非编辑时也显示一行「无」，否则走可编辑行 */}
+                {/* 外貌：简要表面描述，无内容且非编辑时也显示一行「无」 */}
                 {(partner.外貌 !== undefined && partner.外貌 !== '') || editEnabled ? (
                   renderEditableRow(
                     '外貌',
@@ -316,13 +332,22 @@ const DestinyTabContent: FC<WithMvuDataProps> = ({ data }) => {
                     <span className={styles.appearanceValue}>无</span>
                   </div>
                 )}
-                {/* 外貌下的折叠「隐藏条目」：始终显示标题，展开后显示内容占位或后续可绑定字段 */}
-                <Collapse title="隐藏条目" className={styles.appearanceCollapse}>
-                  <div className={styles.hiddenEntryContent}>
-                    {partner.外貌 ? (
-                      <p className={styles.hiddenEntryText}>{partner.外貌}</p>
+                {/* 身体状态：各部位单独列出（胸部、腹部、阴部、臀部、腿部等） */}
+                <Collapse title="身体状态" className={styles.appearanceCollapse}>
+                  <div className={styles.bodyStateContent}>
+                    {partner.身体情况 &&
+                    typeof partner.身体情况 === 'object' &&
+                    Object.keys(partner.身体情况).length > 0 ? (
+                      _.map(partner.身体情况, (desc, partName) => (
+                        <div key={partName} className={styles.bodyStateRow}>
+                          <span className={styles.bodyStateLabel}>{partName}</span>
+                          <span className={styles.bodyStateValue}>
+                            {desc || '—'}
+                          </span>
+                        </div>
+                      ))
                     ) : (
-                      <span className={styles.hiddenEntryPlaceholder}>（暂无隐藏内容）</span>
+                      <span className={styles.hiddenEntryPlaceholder}>（暂无身体状态）</span>
                     )}
                   </div>
                 </Collapse>

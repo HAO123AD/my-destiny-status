@@ -83,10 +83,12 @@ const partners = z
     z
       .object({
         ...IdentitySchema.shape,
+        性别: z.string().prefault(''),
         在场: z.boolean().prefault(false),
         性格: z.string().prefault(''),
         喜爱: z.string().prefault(''),
         外貌: z.string().prefault(''),
+        身体情况: z.record(z.string(), z.string()).prefault({}),
         着装: z.string().prefault(''),
         命定契约: z.boolean().prefault(false),
         好感度: clampedMum(0, -100, 100),
@@ -99,14 +101,16 @@ const partners = z
           // 状态信息
           '在场',
           // 基础信息
+          '性别',
           '种族',
           '身份',
           '职业',
           '生命层级',
-          // 外貌特征
+          // 外貌：简要表面描述
           '性格',
           '喜爱',
           '外貌',
+          '身体情况',
           '着装',
           // 等级
           '等级',

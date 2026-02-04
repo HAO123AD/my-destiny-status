@@ -228,6 +228,9 @@
               "登神长阶": {
                 "$ref": "#/$defs/__schema13"
               },
+              "性别": {
+                "type": "string"
+              },
               "在场": {
                 "type": "boolean"
               },
@@ -239,6 +242,16 @@
               },
               "外貌": {
                 "type": "string"
+              },
+              "身体情况": {
+                "default": {},
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
               },
               "着装": {
                 "type": "string"
