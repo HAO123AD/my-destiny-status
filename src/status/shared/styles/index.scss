@@ -1,0 +1,100 @@
+// 全局样式入口
+@use 'variables' as *;
+
+// 默认主题CSS变量（西幻羊皮纸风格）
+// 这些变量会在JS加载后被 themeStore.applyCssVariables() 覆盖
+:root {
+  // 窗口容器
+  --theme-window-bg: #1a1410;
+  --theme-window-border: #5a3f2b;
+
+  // 标题栏
+  --theme-title-bar-bg: #2b2018;
+  --theme-title-bar-text: #e7d4b5;
+  --theme-title-bar-icon: #c7a37a;
+  --theme-title-bar-btn-hover: rgba(199, 163, 122, 0.16);
+
+  // Tab 栏
+  --theme-tab-bar-bg: #221811;
+  --theme-tab-text: #c3aa86;
+  --theme-tab-active-text: #f6e7cf;
+  --theme-tab-indicator: #b8905b;
+  --theme-tab-hover-bg: rgba(184, 144, 91, 0.14);
+
+  // 内容区域
+  --theme-content-bg: #231a14;
+  --theme-card-bg: #2a2018;
+  --theme-card-border: #4d392a;
+
+  // 文本颜色
+  --theme-text-primary: #f1e1c6;
+  --theme-text-secondary: #cfb38c;
+  --theme-text-muted: #9b8366;
+
+  // 资源条
+  --theme-resource-hp: #b83a2c;
+  --theme-resource-mp: #2a6bb6;
+  --theme-resource-sp: #3a8b4f;
+  --theme-resource-exp: #c08b2f;
+  --theme-resource-text: #f1e1c6;
+
+  // 品质颜色
+  --theme-quality-unique: #d38b3d;
+  --theme-quality-mythic: #c33d5b;
+  --theme-quality-legendary: #d7b25c;
+  --theme-quality-epic: #8e4fb3;
+  --theme-quality-rare: #3f7fc4;
+  --theme-quality-uncommon: #4d8b5a;
+
+  // 交互状态
+  --theme-primary-bg: #8b5a2b;
+  --theme-primary-text: #f7e9d2;
+  --theme-success: #4e9a62;
+  --theme-warning: #d9a441;
+  --theme-error: #c4493d;
+
+  // 命定系统
+  --theme-affection: #b54a5f;
+  --theme-affection-bg: rgba(181, 74, 95, 0.25);
+  --theme-affection-text: #d58d9d;
+  --theme-tag-present: rgba(76, 175, 80, 0.18);
+  --theme-tag-present-text: #7ac28c;
+  --theme-tag-contract: rgba(233, 30, 99, 0.18);
+  --theme-tag-contract-text: #e08aa6;
+
+  // 登神长阶
+  --theme-ascension-element: rgba(33, 150, 243, 0.12);
+  --theme-ascension-power: rgba(255, 152, 0, 0.12);
+  --theme-ascension-law: rgba(156, 39, 176, 0.12);
+
+  // 货币
+  --theme-currency-gold: #ffd700;
+  --theme-currency-silver: #c0c0c0;
+  --theme-currency-copper: #b87333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.status-app {
+  padding: $spacing-md;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--theme-text-primary);
+  background: var(--theme-window-bg);
+}
+
+// 占位组件样式
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  color: var(--theme-text-muted);
+  font-size: 14px;
+  background: var(--theme-card-bg);
+  border: 1px dashed var(--theme-card-border);
+  border-radius: $border-radius-md;
+}

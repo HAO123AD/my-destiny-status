@@ -1,0 +1,11 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.contentArea {
+  flex: 1;
+  padding: $spacing-md;
+  background: var(--theme-content-bg);
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include custom-scrollbar;
+}

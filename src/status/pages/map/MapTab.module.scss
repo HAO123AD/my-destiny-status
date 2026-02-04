@@ -1,0 +1,780 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.mapTab {
+  @include page-container;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.mapContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.toolbarActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.drawColorPalette {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: 2px 4px;
+  border-radius: $border-radius-sm;
+  border: 1px dashed var(--theme-card-border);
+  background: var(--theme-window-bg-secondary, rgba(0, 0, 0, 0.08));
+}
+
+.drawColorLabel {
+  font-size: 11px;
+  color: var(--theme-text-muted);
+}
+
+.drawColorOptions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.drawColorButton {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--theme-card-border);
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+}
+
+.drawColorButton::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.drawColorButtonActive {
+  outline: 2px solid var(--theme-primary-bg);
+  outline-offset: 2px;
+}
+
+.sourceActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.sourceButton {
+  @include button-secondary;
+  height: 28px;
+  padding: 0 $spacing-sm;
+  font-size: 12px;
+}
+
+.sourceButtonActive {
+  background: var(--theme-primary-bg);
+  color: var(--theme-primary-text);
+}
+
+.locationText {
+  font-size: 12px;
+  color: var(--theme-text-secondary);
+  @include text-wrap;
+}
+
+.sourceText {
+  font-size: 11px;
+  color: var(--theme-text-muted);
+}
+
+.drawToggle {
+  @include button-secondary;
+  height: 28px;
+  padding: 0 $spacing-sm;
+  font-size: 12px;
+}
+
+.drawToggleActive {
+  background: var(--theme-primary-bg);
+  color: var(--theme-primary-text);
+}
+
+.clearButton {
+  @include button-secondary;
+  height: 28px;
+  padding: 0 $spacing-sm;
+  font-size: 12px;
+}
+
+.markerPanel {
+  margin-bottom: $spacing-sm;
+  width: 100%;
+  padding: $spacing-sm;
+  border-radius: $border-radius-sm;
+  border: 1px solid var(--theme-card-border);
+  background: var(--theme-window-bg-secondary, rgba(0, 0, 0, 0.04));
+}
+
+.markerPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--theme-text-primary);
+  flex-wrap: wrap;
+  margin-bottom: $spacing-sm;
+  padding-bottom: $spacing-xs;
+  border-bottom: 1px solid var(--theme-card-border);
+  flex-shrink: 0;
+}
+
+.markerPanelTitle {
+  font-weight: 600;
+}
+
+.markerPanelHint {
+  font-size: 12px;
+  color: var(--theme-primary-bg);
+  font-weight: 500;
+}
+
+.markerControls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-sm;
+  flex-wrap: nowrap;
+  width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.markerButton {
+  @include button-secondary;
+  height: 28px;
+  padding: 0 $spacing-sm;
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.markerButtonActive {
+  background: var(--theme-primary-bg);
+  color: var(--theme-primary-text);
+}
+
+.markerSearchInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 28px;
+  border-radius: $border-radius-sm;
+  border: 1px solid var(--theme-card-border);
+  padding: 0 $spacing-sm;
+  background: var(--theme-window-bg-secondary, rgba(0, 0, 0, 0.08));
+  color: var(--theme-text-primary);
+  font-size: 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.markerBody {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) minmax(280px, 1.2fr);
+  gap: $spacing-md;
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.markerList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  min-width: 0;
+  max-height: 360px;
+  min-height: 160px;
+}
+
+.markerItem {
+  border: 1px solid var(--theme-card-border);
+  border-radius: $border-radius-sm;
+  background: var(--theme-window-bg-secondary, rgba(0, 0, 0, 0.08));
+  padding: $spacing-xs $spacing-sm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-xs;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--theme-text-primary);
+  min-width: 0;
+}
+
+.markerItemActive {
+  border-color: var(--theme-primary-bg);
+  box-shadow: 0 0 0 1px var(--theme-primary-bg);
+}
+
+.markerItemInfo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.markerItemDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--theme-card-border);
+  flex-shrink: 0;
+}
+
+.markerItemText {
+  @include text-truncate;
+}
+
+.markerItemActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  flex-shrink: 0;
+}
+
+.markerLocateButton {
+  @include button-secondary;
+  height: 24px;
+  padding: 0 $spacing-xs;
+  font-size: 11px;
+}
+
+.markerEditor {
+  border: 1px dashed var(--theme-card-border);
+  border-radius: $border-radius-sm;
+  padding: $spacing-sm;
+  min-height: 160px;
+  max-height: 360px;
+  background: var(--theme-window-bg-secondary, rgba(0, 0, 0, 0.04));
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.markerEmpty {
+  font-size: 12px;
+  color: var(--theme-text-muted);
+  text-align: center;
+  padding: $spacing-sm 0;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: $spacing-sm;
+}
+
+.formLabel {
+  font-size: 11px;
+  color: var(--theme-text-secondary);
+}
+
+.formInput {
+  height: 28px;
+  border-radius: $border-radius-sm;
+  border: 1px solid var(--theme-card-border);
+  padding: 0 $spacing-sm;
+  background: var(--theme-window-bg);
+  color: var(--theme-text-primary);
+  font-size: 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.formTextarea {
+  min-height: 72px;
+  border-radius: $border-radius-sm;
+  border: 1px solid var(--theme-card-border);
+  padding: $spacing-xs $spacing-sm;
+  background: var(--theme-window-bg);
+  color: var(--theme-text-primary);
+  font-size: 12px;
+  resize: vertical;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.iconOptions {
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+}
+
+.iconButton {
+  @include button-secondary;
+  height: 28px;
+  min-width: 36px;
+  padding: 0 6px;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.iconButton i {
+  font-size: 14px;
+}
+
+.iconButtonLabel {
+  font-size: 11px;
+}
+
+.iconButtonActive {
+  background: var(--theme-primary-bg);
+  color: var(--theme-primary-text);
+}
+
+.markerColorOptions {
+  display: flex;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+}
+
+.markerColorButton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--theme-card-border);
+  cursor: pointer;
+}
+
+.markerColorButtonActive {
+  outline: 2px solid var(--theme-primary-bg);
+  outline-offset: 2px;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.markerDeleteButton {
+  @include button-danger;
+  height: 28px;
+  padding: 0 $spacing-sm;
+  font-size: 12px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: $spacing-sm;
+}
+
+.openButton {
+  @include button-primary;
+  height: 28px;
+  padding: 0 $spacing-sm;
+  font-size: 12px;
+}
+
+.mapFrame {
+  height: clamp(420px, 55vh, 720px);
+  border: 1px dashed var(--theme-card-border);
+  border-radius: $border-radius-sm;
+  @include bg-overlay-light;
+  position: relative;
+  overflow: hidden;
+}
+
+.mapViewer {
+  width: 100%;
+  height: 100%;
+}
+
+.mapMarker {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  pointer-events: auto;
+
+  // 扩大悬浮检测区域，防止鼠标轻微移动就离开标记
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    // background: rgba(255, 0, 0, 0.1); // 调试用：可视化悬浮区域
+  }
+}
+
+.mapMarkerActive {
+  z-index: 4;
+}
+
+// 绘制模式下禁用标记交互
+.mapMarkerDrawMode {
+  pointer-events: none !important;
+  cursor: default;
+}
+
+.mapMarkerIcon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--theme-primary-bg);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+}
+
+.mapMarkerIconNode {
+  line-height: 1;
+  font-size: 14px;
+}
+
+.mapMarkerLabel {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--theme-window-bg);
+  border: 1px solid var(--theme-card-border);
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-size: 10px;
+  white-space: nowrap;
+  color: var(--theme-text-primary);
+}
+
+.mapMarkerGroup {
+  font-size: 10px;
+  color: var(--theme-text-muted);
+  margin-bottom: 4px;
+}
+
+.mapMarkerDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--theme-primary-bg);
+  border: 1px solid var(--theme-card-border);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+}
+
+// Portal 卡片样式（渲染到 body 层级）
+.mapMarkerCard {
+  min-width: 180px;
+  max-width: min(400px, 85vw);
+  width: max-content;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-sm;
+  border: 1px solid var(--theme-card-border);
+  background: var(--theme-window-bg);
+  color: var(--theme-text-primary);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.mapMarkerTitle {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.mapMarkerSummary {
+  font-size: 11px;
+  color: var(--theme-text-secondary);
+  margin-bottom: 6px;
+}
+
+// 轮播图容器样式
+.mapMarkerCarousel {
+  width: 100%;
+  position: relative;
+  margin-top: 6px;
+}
+
+.mapMarkerCarouselInner {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: $border-radius-sm;
+}
+
+.mapMarkerCarouselItem {
+  display: none;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: $border-radius-sm;
+  }
+}
+
+.mapMarkerCarouselItemActive {
+  display: block;
+}
+
+.mapMarkerCarouselNav {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.mapMarkerCarouselDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: var(--theme-text-muted);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--theme-text-secondary);
+  }
+}
+
+.mapMarkerCarouselDotActive {
+  background: var(--theme-primary-bg);
+
+  &:hover {
+    background: var(--theme-primary-bg);
+  }
+}
+
+// 轮播图左右箭头按钮
+.mapMarkerCarouselArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.mapMarkerCarouselArrowPrev {
+  left: 4px;
+}
+
+.mapMarkerCarouselArrowNext {
+  right: 4px;
+}
+
+// 图片预览列表样式
+.imagePreviewList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin-top: $spacing-xs;
+}
+
+.imagePreviewItem {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: $border-radius-sm;
+  overflow: hidden;
+  border: 1px solid var(--theme-card-border);
+}
+
+.imagePreviewThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePreviewRemove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  .imagePreviewItem:hover & {
+    opacity: 1;
+  }
+}
+
+.formLabelHint {
+  font-size: 10px;
+  color: var(--theme-text-muted);
+  margin-left: 4px;
+  font-weight: normal;
+}
+
+.drawLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.drawLayerActive {
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+.drawCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.drawLayerDisabled {
+  pointer-events: none;
+}
+
+.drawCanvasDisabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.mapPlaceholder {
+  @include flex-center;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  color: #f5f5f5;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: $spacing-md;
+  background: rgba(0, 0, 0, 0.45);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toolbarActions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .sourceActions {
+    width: 100%;
+  }
+
+  .sourceButton {
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+
+  .drawColorPalette {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .sourceActions {
+    flex-wrap: wrap;
+  }
+
+  .markerControls {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .markerSearchInput {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .markerBody {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .markerList,
+  .markerEditor {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .markerList {
+    max-height: 200px;
+  }
+
+  .markerEditor {
+    min-height: 140px;
+    max-height: 280px;
+    overflow-y: auto;
+  }
+
+  .mapFrame {
+    height: clamp(320px, 50vh, 600px);
+  }
+}

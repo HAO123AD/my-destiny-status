@@ -1,0 +1,117 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+// 物品标题
+.itemTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.itemName {
+  flex: 1;
+  font-weight: 500;
+  min-width: 0;
+}
+
+// 删除按钮
+.deleteButton {
+  @include delete-button-danger;
+  margin-left: auto;
+}
+
+// 字段标签
+.fieldLabel {
+  color: var(--theme-text-secondary);
+  margin-right: $spacing-xs;
+}
+
+// 位置/消耗/数量
+.itemSlot,
+.itemCost,
+.itemQuantity {
+  color: var(--theme-text-secondary);
+  margin-bottom: $spacing-xs;
+}
+
+// 效果标题
+.effectsHeader {
+  font-size: 11px;
+  color: var(--theme-text-secondary);
+  margin-bottom: $spacing-xs;
+  font-weight: 500;
+}
+
+// 物品详情
+.itemDetails {
+  font-size: 12px;
+}
+
+.itemQuality {
+  color: var(--theme-text-secondary);
+  margin-bottom: $spacing-xs;
+  font-weight: 500;
+}
+
+.itemType {
+  color: var(--theme-text-secondary);
+  margin-bottom: $spacing-xs;
+}
+
+@media (max-width: 540px) {
+  .itemTitle {
+    align-items: flex-start;
+  }
+}
+
+// 物品标签
+.itemTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: $spacing-xs;
+}
+
+.tag {
+  @include badge-dark;
+  border: none;
+}
+
+.itemDesc {
+  color: var(--theme-text-primary);
+  line-height: 1.5;
+  margin-bottom: $spacing-xs;
+}
+
+.itemEffects {
+  padding-top: $spacing-xs;
+  border-top: 1px dashed var(--theme-card-border);
+}
+
+.effectRow {
+  @include label-value-grid;
+  padding: 2px 0;
+}
+
+.effectKey {
+  color: var(--theme-text-secondary);
+  min-width: 0;
+  word-break: break-word;
+}
+
+.effectValue {
+  color: var(--theme-text-primary);
+  min-width: 0;
+  word-break: break-word;
+}
+
+@media (max-width: 540px) {
+  .effectRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+// 品质颜色
+@include quality-colors;

@@ -1,0 +1,377 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.statusTab {
+  @include page-container;
+}
+
+.statusTabCard {
+  border: 1px solid var(--theme-card-border);
+}
+
+.statusTabLoading,
+.statusTabError,
+.statusTabEmpty {
+  @include state-container;
+}
+
+.statusTabError {
+  color: var(--theme-error);
+}
+
+// 基础信息
+.basicInfo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $spacing-xs $spacing-md;
+}
+
+.basicInfoRow {
+  display: grid;
+  grid-template-columns: minmax(96px, 0.33fr) minmax(0, 1fr);
+  gap: $spacing-xs;
+  align-items: center;
+}
+
+.basicInfoLabel {
+  font-size: 12px;
+  color: var(--theme-text-secondary);
+  min-width: 0;
+  word-break: break-word;
+}
+
+.basicInfoValue {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--theme-text-primary);
+  min-width: 0;
+  word-break: break-word;
+}
+
+@media (max-width: 540px) {
+  .basicInfo {
+    grid-template-columns: 1fr;
+  }
+}
+
+// 属性
+.attributes {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: $spacing-xs;
+}
+
+.attributesEdit {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 540px) {
+  .attributes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .attributesEdit {
+    grid-template-columns: 1fr;
+  }
+}
+
+.attributesItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include item-bar;
+  border: none;
+}
+
+.attributesItemEdit {
+  flex-direction: row;
+  justify-content: space-between;
+  gap: $spacing-sm;
+}
+
+.attributesLabel {
+  font-size: 11px;
+  color: var(--theme-text-secondary);
+  margin-bottom: 2px;
+}
+
+.attributesItemEdit .attributesLabel {
+  margin-bottom: 0;
+}
+
+.attributesValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--theme-text-primary);
+}
+
+// 属性卡片标题编辑模式
+.attributesTitleEdit {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+// 资源条
+.resources {
+  @include list-container;
+}
+
+// 状态效果
+.statusEffects {
+  @include list-container;
+}
+
+.effectItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: $spacing-sm;
+  @include item-bar;
+  border-left: 3px solid var(--theme-success);
+}
+
+.effectBuff {
+  border-left-color: var(--theme-success);
+}
+
+.effectDebuff {
+  border-left-color: var(--theme-error);
+}
+
+.effectSpecial {
+  border-left-color: var(--theme-warning);
+}
+
+@media (max-width: 540px) {
+  .effectItem {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+}
+
+.effectInfo {
+  @include list-container(2px);
+  min-width: 0;
+}
+
+.collapseTitleRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  min-width: 0;
+}
+
+.collapseSummary {
+  font-size: 11px;
+  color: var(--theme-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: auto;
+}
+
+@media (max-width: 540px) {
+  .collapseTitleRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-xs;
+  }
+
+  .collapseSummary {
+    margin-left: 0;
+    white-space: normal;
+  }
+}
+
+.effectHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  min-width: 0;
+}
+
+.effectName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--theme-text-primary);
+  min-width: 0;
+  word-break: break-word;
+}
+
+.effectType {
+  @include badge-bordered;
+  font-size: 10px;
+  color: var(--theme-text-secondary);
+  @include uppercase-text;
+  border-radius: 999px;
+}
+
+.effectDesc {
+  font-size: 11px;
+  color: var(--theme-text-secondary);
+  word-break: break-word;
+}
+
+.effectSource {
+  font-size: 11px;
+  color: var(--theme-text-muted);
+  word-break: break-word;
+}
+
+.effectMeta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  justify-self: end;
+  min-width: 0;
+}
+
+@media (max-width: 540px) {
+  .effectMeta {
+    justify-self: start;
+  }
+}
+
+.effectStack {
+  @include badge-bordered;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--theme-text-primary);
+}
+
+.effectTime {
+  font-size: 11px;
+  color: var(--theme-text-muted);
+}
+
+.emptyEffects {
+  @include empty-hint;
+}
+
+// 资源编辑模式
+.resourceEditRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-xs 0;
+}
+
+.resourceLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--theme-text-secondary);
+  min-width: 40px;
+}
+
+.resourceEditors {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  flex: 1;
+}
+
+.resourceSeparator {
+  color: var(--theme-text-muted);
+  font-size: 12px;
+}
+
+.expMax {
+  font-size: 13px;
+  color: var(--theme-text-secondary);
+}
+
+// 状态效果编辑模式样式
+.effectItemEdit {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+// 编辑模式头部：名称 + 类型 + 层数 + 时间 + 删除按钮
+.effectEditHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  width: 100%;
+
+  .effectName {
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+}
+
+// 内容区域：包含名称和元信息，占据左侧空间
+.effectEditHeaderContent {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  min-width: 0;
+  flex: 1;
+}
+
+// 元信息行（类型、层数、时间）
+.effectEditHeaderMeta {
+  display: contents;
+}
+
+// 编辑模式内容行：标签 + 全宽输入
+.effectEditContent {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xs;
+  width: 100%;
+
+  > div {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.effectEditLabel {
+  font-size: 10px;
+  color: var(--theme-text-muted);
+  flex-shrink: 0;
+  min-width: 32px;
+  padding-top: 6px;
+}
+
+.effectMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.effectMetaLabel {
+  font-size: 10px;
+  color: var(--theme-text-muted);
+  flex-shrink: 0;
+}
+
+.effectDeleteBtn {
+  @include delete-button-danger(28px);
+  flex-shrink: 0;
+}
+
+@media (max-width: 540px) {
+  .effectEditHeader {
+    align-items: flex-start;
+  }
+
+  // 移动端：名称和元信息垂直排列
+  .effectEditHeaderContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-xs;
+  }
+
+  // 移动端：元信息行横向排列
+  .effectEditHeaderMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    align-items: center;
+  }
+}

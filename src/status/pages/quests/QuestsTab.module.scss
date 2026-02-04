@@ -1,0 +1,152 @@
+@use '../../shared/styles/variables' as *;
+@use '../../shared/styles/mixins' as *;
+
+.questsTab {
+  @include page-container;
+}
+
+@media (max-width: 540px) {
+  .stats {
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+}
+
+.loading,
+.error,
+.empty {
+  @include state-container;
+}
+
+.error {
+  color: var(--theme-error);
+}
+
+// 统计卡片
+.statsCard {
+  padding: $spacing-xs $spacing-sm;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: $spacing-base;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+
+  i {
+    color: var(--theme-tab-indicator);
+    margin-right: $spacing-base;
+  }
+}
+
+.statsLabel {
+  color: var(--theme-text-secondary);
+}
+
+.statsValue {
+  font-weight: 600;
+  color: var(--theme-text-primary);
+}
+
+@media (max-width: 540px) {
+  .stats {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+// 任务列表
+.questList {
+  @include list-container;
+}
+
+// 任务标题区域
+.questHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: $spacing-sm;
+}
+
+// 任务标题
+.questTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  letter-spacing: 0.4px;
+  min-width: 0;
+  flex: 1;
+
+  i {
+    color: var(--theme-tab-indicator);
+    font-size: 14px;
+  }
+}
+
+// 删除按钮
+.deleteButton {
+  @include delete-button-danger;
+  margin-left: auto;
+}
+
+.questName {
+  font-weight: 500;
+  color: var(--theme-text-primary);
+  min-width: 0;
+  word-break: break-word;
+}
+
+// 任务内容
+.questContent {
+  @include list-container($spacing-xs);
+}
+
+.questField {
+  @include list-container(2px);
+}
+
+.fieldLabel {
+  font-size: 11px;
+  color: var(--theme-text-muted);
+  text-transform: uppercase;
+  word-break: break-word;
+}
+
+.fieldValue {
+  font-size: 12px;
+  color: var(--theme-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+// 非编辑模式文本显示
+.fieldText {
+  white-space: pre-wrap;
+  color: var(--theme-text-primary);
+}
+
+// 可编辑内容
+.editableContent {
+  width: 100%;
+}
+
+// 空状态
+.emptyCard {
+  padding: $spacing-lg;
+}
+
+.emptyHint {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-sm;
+  color: var(--theme-text-muted);
+
+  i {
+    font-size: 32px;
+    opacity: 0.5;
+  }
+}
