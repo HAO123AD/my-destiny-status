@@ -23,7 +23,7 @@
     "@types/showdown": "^2.0.6",
     "@types/toastr": "^2.1.43",
     "@types/webpack": "^5.28.5",
-    "@typescript-eslint/parser": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.1",
     "autoprefixer": "^10.4.27",
     "chokidar": "^5.0.0",
     "css-loader": "^7.1.4",
@@ -64,7 +64,7 @@
     "tsx": "^4.21.0",
     "type-fest": "^5.4.4",
     "typescript": "6.0.0-dev.20250807",
-    "typescript-eslint": "^8.57.0",
+    "typescript-eslint": "^8.57.1",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^31.0.0",
     "vue-eslint-parser": "^10.4.0",
@@ -95,7 +95,7 @@
     "lodash": "^4.17.23",
     "openseadragon": "^5.0.1",
     "pinia": "^3.0.4",
-    "pixi.js": "^8.17.0",
+    "pixi.js": "^8.17.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "toastr": "^2.1.4",
@@ -105,7 +105,7 @@
     "vue3-pixi": "1.0.0-beta.6",
     "yaml": "^2.8.2",
     "zod": "^4.3.6",
-    "zustand": "^5.0.11"
+    "zustand": "^5.0.12"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
